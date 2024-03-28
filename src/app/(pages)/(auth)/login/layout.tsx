@@ -1,14 +1,13 @@
 import Image from 'next/image'
 import { type ReactNode } from 'react'
 
-interface LoginContainerProps {
+interface LoginLayoutProps {
   children: ReactNode
 }
 
-export function LoginContainer({ children }: LoginContainerProps) {
+export default function LoginLayout({ children }: LoginLayoutProps) {
   return (
     <div className="h-screen lg:grid lg:grid-cols-2">
-      <div className="flex items-center justify-center py-12">{children}</div>
       <div className="hidden lg:block lg:flex lg:items-center lg:justify-center lg:py-12">
         <Image
           src="/assets/images/ClinicEase_Logo.png"
@@ -17,6 +16,7 @@ export function LoginContainer({ children }: LoginContainerProps) {
           height={600}
         />
       </div>
+      <div className="flex items-center justify-center py-12">{children}</div>
     </div>
   )
 }
