@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { ThemeProvider } from './components/theme/theme-provider'
 
 export const metadata: Metadata = {
   title: 'ClinicEase',
@@ -13,7 +14,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-secondary">{children}</body>
+      <body className="antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
