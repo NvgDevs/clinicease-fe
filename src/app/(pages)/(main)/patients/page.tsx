@@ -22,11 +22,13 @@ export default function Patitents() {
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="w-[64px]"></TableHead>
                 <TableHead>Nome</TableHead>
                 <TableHead>Telefone</TableHead>
                 <TableHead>CPF</TableHead>
                 <TableHead>Data de Nascimento</TableHead>
-                <TableHead></TableHead>
+                <TableHead className="w-[64px]"></TableHead>
+                <TableHead className="w-[64px]"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
