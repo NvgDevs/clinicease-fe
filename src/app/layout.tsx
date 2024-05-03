@@ -3,7 +3,10 @@ import './globals.css'
 import { ThemeProvider } from './components/theme/theme-provider'
 
 export const metadata: Metadata = {
-  title: 'ClinicEase',
+  title: {
+    template: '%s | ClinicEase',
+    default: 'ClinicEase',
+  },
   description: 'Sistema de Controle de Clinicas e Consultas',
 }
 
