@@ -17,7 +17,7 @@ export function NavLink({ children, ...rest }: NavLinkProps) {
     <Link
       {...rest}
       data-current={pathname === rest.href}
-      className="data-[current=true]:text-foreground hover:text-foreground text-muted-foreground flex items-center gap-1.5 text-sm font-medium"
+      className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground data-[current=true]:text-foreground"
     >
       {children}
     </Link>

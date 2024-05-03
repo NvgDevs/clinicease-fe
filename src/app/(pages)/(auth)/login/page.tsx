@@ -10,7 +10,7 @@ export default function Login() {
       <div className="mx-auto grid w-[350px] gap-6">
         <div className="grid gap-2 text-center">
           <h1 className="text-3xl font-bold">Login</h1>
-          <p className="text-muted-foreground text-balance">
+          <p className="text-balance text-muted-foreground">
             Entre com seu login e senha para acesso ao ClinicEase
           </p>
         </div>

@@ -32,7 +32,7 @@ export function AccountMenu() {
         <DropdownMenuContent align="end" className="w-auto">
           <DropdownMenuLabel>
             <span>Nathan Vech Balbino</span>
-            <p className="text-muted-foreground text-sm font-normal">
+            <p className="text-sm font-normal text-muted-foreground">
               triococo@hotmail.com
             </p>
           </DropdownMenuLabel>
