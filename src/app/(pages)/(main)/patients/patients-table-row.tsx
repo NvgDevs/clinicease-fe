@@ -6,8 +6,13 @@ import { TableCell, TableRow } from '@/app/components/ui/table'
 import { Info, Pencil, Trash } from 'lucide-react'
 import { useState } from 'react'
 import PatientDetails from './patient-details'
+import { type PatientData } from '@/data/types/patient'
 
-export default function PatientsTableRow() {
+interface PatientsTableRowProps {
+  patient: PatientData
+}
+
+export default function PatientsTableRow({ patient }: PatientsTableRowProps) {
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false)
 
   return (
@@ -24,10 +29,10 @@ export default function PatientsTableRow() {
           <PatientDetails isDetailOpen={isDetailOpen} />
         </Dialog>
       </TableCell>
-      <TableCell className="font-medium">Nathan Ferreira</TableCell>
-      <TableCell className="font-medium">17 99140-7968</TableCell>
-      <TableCell className="font-medium">444.888.666-93</TableCell>
-      <TableCell className="font-medium">22/11/2000</TableCell>
+      <TableCell className="font-medium">{patient.name}</TableCell>
+      <TableCell className="font-medium">{patient.name}</TableCell>
+      <TableCell className="font-medium">{patient.cpf}</TableCell>
+      <TableCell className="font-medium">{patient.birthDate}</TableCell>
       <TableCell className="flex justify-end gap-2 font-medium">
         <Button size="xs" variant="outline">
           <Trash className="h-4 w-4" />

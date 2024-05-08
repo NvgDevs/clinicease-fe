@@ -48,7 +48,8 @@
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-floating-promises": "off"
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-base-to-string": "off"
   },
   "ignorePatterns": ["*.config.js", "*.config.mjs"]
 }

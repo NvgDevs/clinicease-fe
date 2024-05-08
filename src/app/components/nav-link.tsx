@@ -11,12 +11,10 @@ interface NavLinkProps extends LinkProps {
 export function NavLink({ children, ...rest }: NavLinkProps) {
   const pathname = usePathname()
 
-  console.log(pathname)
-
   return (
     <Link
       {...rest}
-      data-current={pathname === rest.href}
+      data-current={pathname.includes(rest.href.toString())}
       className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground data-[current=true]:text-foreground"
     >
       {children}

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "server": "json-server src/api-actions/mock/index.js --port 3333 --delay 2500 --watch"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
@@ -19,6 +20,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "eslint-config-prettier": "^9.1.0",
+    "json-server": "^0.17.4",
     "lucide-react": "^0.359.0",
     "next": "14.1.4",
     "next-themes": "^0.3.0",
