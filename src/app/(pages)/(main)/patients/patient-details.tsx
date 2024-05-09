@@ -1,3 +1,4 @@
+import { getPatientDetails } from '@/api-actions/get-patient-details'
 import {
   DialogContent,
   DialogDescription,
@@ -12,11 +13,14 @@ import {
 } from '@/app/components/ui/table'
 
 export interface PatientDetailsProps {
-  isDetailOpen: boolean
+  patientId: string
 }
 
-export default function PatientDetails({ isDetailOpen }: PatientDetailsProps) {
-  if (!isDetailOpen) return
+export default async function PatientDetails({
+  patientId,
+}: PatientDetailsProps) {
+  // TODO: find a better mock service
+  const patient = await getPatientDetails(patientId)
 
   return (
     <DialogContent>

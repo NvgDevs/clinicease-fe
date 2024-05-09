@@ -1,22 +1,21 @@
 import { api } from '@/data/api'
 
 interface GetPatientsResponse {
-  patients: Array<{
+  patient: {
     id: string
     name: string
     phone: string
+    email: string
+    address: string
     cpf: string
     birthDate: string
-  }>
-  meta: {
-    pageIndex: number
-    perPage: number
-    totalCount: number
   }
 }
 
-export async function getPatients(): Promise<GetPatientsResponse> {
-  const response = await api('/patients', {
+export async function getPatientDetails(
+  patientId: string,
+): Promise<GetPatientsResponse> {
+  const response = await api(`/patients/${patientId}`, {
     next: {
       revalidate: 60,
     },

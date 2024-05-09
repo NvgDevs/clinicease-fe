@@ -4,12 +4,17 @@ import { Button } from '@/app/components/ui/button'
 import { Dialog, DialogTrigger } from '@/app/components/ui/dialog'
 import { TableCell, TableRow } from '@/app/components/ui/table'
 import { Info, Pencil, Trash } from 'lucide-react'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import PatientDetails from './patient-details'
-import { type PatientData } from '@/data/types/patient'
 
 interface PatientsTableRowProps {
-  patient: PatientData
+  patient: {
+    id: string
+    name: string
+    phone: string
+    cpf: string
+    birthDate: string
+  }
 }
 
 export default function PatientsTableRow({ patient }: PatientsTableRowProps) {
@@ -26,7 +31,11 @@ export default function PatientsTableRow({ patient }: PatientsTableRowProps) {
             </Button>
           </DialogTrigger>
 
-          <PatientDetails isDetailOpen={isDetailOpen} />
+          {isDetailOpen && (
+            <Suspense fallback={<p>Loading...</p>}>
+              <PatientDetails patientId={patient.id} />
+            </Suspense>
+          )}
         </Dialog>
       </TableCell>
       <TableCell className="font-medium">{patient.name}</TableCell>
