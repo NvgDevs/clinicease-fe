@@ -1,6 +1,8 @@
+'use server'
+
 import { api } from '@/data/api'
 
-interface GetPatientsResponse {
+export interface GetPatientsResponse {
   patients: Array<{
     id: string
     name: string
@@ -19,6 +21,7 @@ export async function getPatients(): Promise<GetPatientsResponse> {
   const response = await api('/patients', {
     next: {
       revalidate: 60,
+      tags: ['patients'],
     },
   })
 

@@ -6,6 +6,7 @@ import { TableCell, TableRow } from '@/app/components/ui/table'
 import { Info, Pencil, Trash } from 'lucide-react'
 import { Suspense, useState } from 'react'
 import PatientDetails from './patient-details'
+import { PatientDetailsSkeleton } from './patient.details-skeleton'
 
 interface PatientsTableRowProps {
   patient: {
@@ -32,7 +33,7 @@ export default function PatientsTableRow({ patient }: PatientsTableRowProps) {
           </DialogTrigger>
 
           {isDetailOpen && (
-            <Suspense fallback={<p>Loading...</p>}>
+            <Suspense fallback={<PatientDetailsSkeleton />}>
               <PatientDetails patientId={patient.id} />
             </Suspense>
           )}

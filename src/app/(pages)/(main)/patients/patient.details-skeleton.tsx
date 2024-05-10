@@ -1,10 +1,10 @@
-import { getPatientDetails } from '@/api-actions/get-patient-details'
 import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/app/components/ui/dialog'
+import { Skeleton } from '@/app/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -12,19 +12,13 @@ import {
   TableRow,
 } from '@/app/components/ui/table'
 
-export interface PatientDetailsProps {
-  patientId: string
-}
-
-export default async function PatientDetails({
-  patientId,
-}: PatientDetailsProps) {
-  const patient = await getPatientDetails(patientId)
-
+export function PatientDetailsSkeleton() {
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Paciente: {patient.name}</DialogTitle>
+        <DialogTitle className="flex items-center gap-2">
+          Paciente: <Skeleton className="h-4 w-[70px]" />
+        </DialogTitle>
         <DialogDescription>Detalhes do Paciente</DialogDescription>
       </DialogHeader>
 
@@ -32,25 +26,33 @@ export default async function PatientDetails({
         <TableBody>
           <TableRow>
             <TableCell className="text-muted-foreground">Nome</TableCell>
-            <TableCell className="flex justify-end">{patient.name}</TableCell>
+            <TableCell className="flex justify-end">
+              <Skeleton className="h-4 w-[70px]" />
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground">Email</TableCell>
-            <TableCell className="flex justify-end">{patient.email}</TableCell>
+            <TableCell className="flex justify-end">
+              <Skeleton className="h-4 w-[120px]" />
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground">Endereço</TableCell>
             <TableCell className="flex justify-end">
-              {patient.address}
+              <Skeleton className="h-4 w-[100px]" />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground">CPF</TableCell>
-            <TableCell className="flex justify-end">{patient.cpf}</TableCell>
+            <TableCell className="flex justify-end">
+              <Skeleton className="h-4 w-[90px]" />
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="text-muted-foreground">Telefone</TableCell>
-            <TableCell className="flex justify-end">{patient.phone}</TableCell>
+            <TableCell className="flex justify-end">
+              <Skeleton className="h-4 w-[90px]" />
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
