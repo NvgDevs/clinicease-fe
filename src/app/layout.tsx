@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { ThemeProvider } from './components/theme/theme-provider'
+import Providers from './components/provider'
 
 export const metadata: Metadata = {
-  title: 'ClinicEase',
+  title: {
+    template: '%s | ClinicEase',
+    default: 'ClinicEase',
+  },
   description: 'Sistema de Controle de Clinicas e Consultas',
 }
 
@@ -15,14 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

@@ -20,9 +20,13 @@ export default function Pagination({
   pageIndex,
   totalCount,
   perPage,
-  onPageChange,
+  // onPageChange,
 }: PaginationProps) {
   const pages = Math.ceil(totalCount / perPage) || 1
+
+  function onPageChange(page: number) {
+    console.log(page)
+  }
 
   return (
     <div className="flex w-full items-center justify-between">
