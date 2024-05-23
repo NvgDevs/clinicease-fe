@@ -13,7 +13,7 @@ export interface PaginationProps {
   pageIndex: number
   totalCount: number
   perPage: number
-  // onPageChange: (pageIndex: number) => void
+  onPageChange: (pageIndex: number) => void
 }
 
 export default function Pagination({

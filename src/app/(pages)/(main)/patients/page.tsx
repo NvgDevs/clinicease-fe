@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Table,
   TableBody,
@@ -8,18 +10,30 @@ import {
 import PatientsTableFilter from './patients-table-filter'
 import PatientsTableRow from './patients-table-row'
 import Pagination from '@/app/components/pagination'
-import { type Metadata } from 'next'
 import { getPatients } from '@/api-actions/get-patients'
 import { Button } from '@/app/components/ui/button'
 import { PlusCircle } from 'lucide-react'
 import Link from 'next/link'
+import { useQuery } from '@tanstack/react-query'
+import PatientsTableSkeleton from './patients-table-skeleton'
+import { useSearchParams } from 'next/navigation'
 
-export const metadata: Metadata = {
-  title: 'Pacientes',
-}
+export default function Patitents() {
+  const searchParams = useSearchParams()
 
-export default async function Patitents() {
-  const { patients, meta } = await getPatients()
+  const patientName = searchParams.get('patientName')
+  const email = searchParams.get('email')
+  const cpf = searchParams.get('cpf')
+  const phone = searchParams.get('phone')
+
+  const { data: result, isLoading: isLoadingPatients } = useQuery({
+    queryKey: ['patients', patientName, email, cpf, phone],
+    queryFn: async () => await getPatients({ patientName, email, cpf, phone }),
+  })
+
+  function handlePaginate(pageIndex: number) {
+    console.log('paginate')
+  }
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -47,19 +61,22 @@ export default async function Patitents() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {patients.map((patient) => (
+              {isLoadingPatients && <PatientsTableSkeleton />}
+              {result?.patients.map((patient) => (
                 <PatientsTableRow key={patient.id} patient={patient} />
               ))}
             </TableBody>
           </Table>
         </div>
 
-        <Pagination
-          pageIndex={meta.pageIndex}
-          totalCount={meta.totalCount}
-          perPage={meta.perPage}
-          // onPageChange={handlePageChange}
-        />
+        {result && (
+          <Pagination
+            pageIndex={result.meta.pageIndex}
+            totalCount={result.meta.totalCount}
+            perPage={result.meta.perPage}
+            onPageChange={handlePaginate}
+          />
+        )}
       </div>
     </div>
   )

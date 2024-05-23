@@ -1,6 +1,6 @@
 'use server'
 
-import { api } from '@/data/api'
+import { api } from '@/app/lib/axios'
 
 interface GetPatientDeatilsResponse {
   id: string
@@ -15,13 +15,9 @@ interface GetPatientDeatilsResponse {
 export async function getPatientDetails(
   patientId: string,
 ): Promise<GetPatientDeatilsResponse> {
-  const response = await api(`/patients/${patientId}`, {
-    next: {
-      revalidate: 60,
-    },
-  })
+  const response = await api.get<GetPatientDeatilsResponse>(
+    `/patients/${patientId}`,
+  )
 
-  const data = await response.json()
-
-  return data
+  return response.data
 }

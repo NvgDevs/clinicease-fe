@@ -1,5 +1,4 @@
 import {
-  DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
@@ -14,7 +13,7 @@ import {
 
 export function PatientDetailsSkeleton() {
   return (
-    <DialogContent>
+    <>
       <DialogHeader>
         <DialogTitle className="flex items-center gap-2">
           Paciente: <Skeleton className="h-4 w-[70px]" />
@@ -56,6 +55,6 @@ export function PatientDetailsSkeleton() {
           </TableRow>
         </TableBody>
       </Table>
-    </DialogContent>
+    </>
   )
 }

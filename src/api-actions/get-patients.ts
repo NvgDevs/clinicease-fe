@@ -1,6 +1,6 @@
 'use server'
 
-import { api } from '@/data/api'
+import { api } from '@/app/lib/axios'
 
 export interface GetPatientsResponse {
   patients: Array<{
@@ -17,15 +17,22 @@ export interface GetPatientsResponse {
   }
 }
 
-export async function getPatients(): Promise<GetPatientsResponse> {
-  const response = await api('/patients', {
-    next: {
-      revalidate: 60,
-      tags: ['patients'],
+interface GetPatientsParams {
+  pageIndex?: number | null
+  patientName?: string | null
+  email?: string | null
+  cpf?: string | null
+  phone?: string | null
+}
+
+export async function getPatients({
+  patientName,
+}: GetPatientsParams): Promise<GetPatientsResponse> {
+  const response = await api.get<GetPatientsResponse>('/patients', {
+    params: {
+      patientName,
     },
   })
 
-  const data = await response.json()
-
-  return data
+  return response.data
 }
